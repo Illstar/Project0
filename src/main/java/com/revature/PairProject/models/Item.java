@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.revature.PairProject.models;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;

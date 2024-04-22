@@ -1,12 +1,10 @@
-package com.revature.controllers;
+package com.revature.PairProject.controllers;
 
-import com.revature.daos.ItemDAO;
-import com.revature.daos.UserDAO;
-import com.revature.models.Item;
-import com.revature.models.User;
+import com.revature.PairProject.daos.ItemDAO;
+import com.revature.PairProject.daos.UserDAO;
+import com.revature.PairProject.models.Item;
+import com.revature.PairProject.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
