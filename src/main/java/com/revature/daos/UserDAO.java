@@ -25,6 +25,8 @@ public interface UserDAO extends JpaRepository<User, Integer> {
 
     public User findByUsername(String username);
 
+
+
     //Note: The method MUST BE NAMED "findByXYZ" or it won't work
 
     //How does Spring Data know? It's based on the name of the FIELD in the class

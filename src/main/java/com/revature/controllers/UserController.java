@@ -71,6 +71,10 @@ public class UserController {
         return ResponseEntity.ok(u);
     }
 
+    /*
+
+    UNCOMMENTING THIS BREAKS FIND BY USERNAME
+
     //method to get one user by its ID
     @GetMapping("/{userId}")
     public ResponseEntity<Object> getUserByUserId(@PathVariable Integer userId){
@@ -88,6 +92,8 @@ public class UserController {
         return ResponseEntity.ok(foundUser);
 
     }
+
+     */
 
 
 
@@ -115,10 +121,17 @@ public class UserController {
 
 
     //method to get items that belong to a certain user
-    @GetMapping("/{userId}/items")
-    public ResponseEntity<List<Item>>  getUserItemsById(@PathVariable Integer userId) {
+    @GetMapping("/{username}/items")
+    public ResponseEntity<List<Item>>  getUserItemsById(@PathVariable String username) {
 
-        List<Item> items = itemDAO.findByUser_UserId(userId);
+        User u = userDAO.findByUsername(username);
+
+        if (u == null){
+            //return a ResponseEntity with status 404 (not found)
+            return ResponseEntity.notFound().build();
+        }
+
+        List<Item> items = itemDAO.findByUser_UserId(u.getUserId());
 
 
         return ResponseEntity.ok(items);
