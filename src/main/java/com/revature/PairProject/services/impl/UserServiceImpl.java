@@ -1,8 +1,11 @@
 package com.revature.PairProject.services.impl;
 
+import com.revature.PairProject.daos.ItemDAO;
 import com.revature.PairProject.daos.UserDAO;
+import com.revature.PairProject.models.Item;
 import com.revature.PairProject.models.User;
 import com.revature.PairProject.services.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +17,6 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
-
 
     @Override
     public User createUser(User user) {
@@ -53,4 +55,6 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteByUsername(username);
 
     }
+
+
 }

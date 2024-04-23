@@ -46,14 +46,18 @@ public class ItemController {
     }
 
     //This method will take an entire item object and replace an existing item with the new item object
-    @PutMapping("/{userId}")
-    public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable int userId){
+    @PutMapping("/{itemId}")
+    public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable int itemId){
 
-        User u = userDAO.findById(userId).get();
+        Optional<Item> optFoundItem = itemDAO.findById(itemId);
 
-        item.setUser(u);
+        Item foundItem = optFoundItem.get();
 
-        Item savedItem = itemDAO.save(item);  //Updates and inserts use the SAME JPA METHOD, save()
+        //Update the title, using the setter
+        foundItem.setNameOfItem(item.getNameOfItem());
+        foundItem.setTypeOfItem(item.getTypeOfItem());
+
+        Item savedItem = itemDAO.save(foundItem);  //Updates and inserts use the SAME JPA METHOD, save()
 
         //how does the DB know if it's an update or an insert?
         //It looks for an existing PK.
@@ -67,7 +71,7 @@ public class ItemController {
     //This method will update ONLY the title of a item
     // The method uses <Object> in the return type here because we could return a <Item> or String.
     @PatchMapping("/{itemId}")
-    public ResponseEntity<Object> updateItemName(@RequestBody String title, @PathVariable int itemId){
+    public ResponseEntity<Object> updateItemName(@RequestBody String patchTitle, @PathVariable int itemId){
 
         //get the item by ID, set the new title with setter, save it back to the DB
 
@@ -82,7 +86,7 @@ public class ItemController {
 
         //Extract the Item from the Optional
         Item item = foundItem.get();
-
+        String title = patchTitle;
         //Update the title, using the setter
         item.setNameOfItem(title);
 
@@ -143,7 +147,11 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-
+    @GetMapping("/{userId}/items")
+    public ResponseEntity<List<Item>> getAllItemsByUsername(@PathVariable Integer userId){
+        List<Item> items = itemDAO.findByUserId(userId);
+        return ResponseEntity.ok(items);
+    }
 
 
 }

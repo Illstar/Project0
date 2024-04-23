@@ -1,5 +1,6 @@
 package com.revature.PairProject.services;
 
+import com.revature.PairProject.models.Item;
 import com.revature.PairProject.models.User;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface UserService {
 
     public User updateUser(String username, User user);
     public void deleteUser(String username);
+
 }

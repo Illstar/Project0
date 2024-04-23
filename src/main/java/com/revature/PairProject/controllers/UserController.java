@@ -72,24 +72,6 @@ public class UserController {
 
 
     //method to get items that belong to a certain user
-//    @GetMapping("/{username}/items")
-//    public ResponseEntity<List<Item>>  getUserItemsById(@PathVariable String username) {
-//
-//        User u = userDAO.findByUsername(username);
-//
-//        if (u == null){
-//            //return a ResponseEntity with status 404 (not found)
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        List<Item> items = itemDAO.findByUser_UserId(u.getUserId());
-//
-//
-//        return ResponseEntity.ok(items);
-//
-//
-//
-//    }
 
 
 
